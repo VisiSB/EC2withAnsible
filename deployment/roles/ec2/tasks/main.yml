@@ -1,0 +1,11 @@
+- ec2:
+    assign_public_ip: yes
+    key_name: FranKey
+    image: ami-ad11faca
+    region: eu-central-1
+    vpc_subnet_id: subnet-9c4b33e1
+    instance_type: t2.micro
+    wait: yes
+    count: 1
+    group: Cluster
+        
