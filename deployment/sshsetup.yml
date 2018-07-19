@@ -1,14 +1,14 @@
-- hosts: all
+- hosts: #Your hosts
   tasks:
   - name: make direcotry
     file:
-      path: "/home/<username>/.ssh"
+      path: "/home/[USER]/.ssh"
       state: directory
   - name: create empty file
     file:
-      path: "/home/master/.ssh/authorized_keys"
+      path: "/home/[USER]/.ssh/authorized_keys"
       state: touch
   - name: put pubkey
     lineinfile:
-      path: "/home/master/.ssh/authorized_keys"
-      line: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVDvLECdiQyIWNFj2fDmaIWTxcGOmvTm53vBbDuKdVDnimC5Cr3p8zs5PkUmMvIbPPrIB1p14OYxpznh3ncKGiBMYFqulhk/GAt+2U8qUi+1EIdwRv3mcTNS6liy77BHUqAYk1frBDL2S8ZpCx0EUjm+YzxaTRsbdmyG5XgniWVY2GfuV83EVRdXbP97J5HF6u9H/Ib3em7e2S1cjjIrOx1zsxF3BppbS8ZnQTB9AFCa/Fs44+lS5rkOZuCmhzKq2tE2CiiYX5uc+oEg5BfNiRpEnAqtGyjFkiozbI+l/ec/wY0oPYuucSZhccZmLi+e+bq/U3HV5WVfA3L6pFBXDH master@MasterCluster"
+      path: "/home/[USER]/.ssh/authorized_keys"
+      line: "[YOUR_PUB_KEY]"
