@@ -2,6 +2,7 @@
 EC2 Cluster deployment with ansible
 
 This set of playbooks will help you deploy your cluster on AWS
+
 It has 3 parts:
 
 First, is deploying the instances (ec2deploy.yml)
