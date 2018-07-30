@@ -3,7 +3,7 @@ EC2 Cluster deployment with ansible
 
 This set of playbooks will help you deploy your cluster on AWS
 
-It has 3 parts:
+It has 4 parts:
 
 First, is deploying the instances (ec2deploy.yml)
   1) Edit the file ec2deploy.yml and add your variables
@@ -18,5 +18,9 @@ First, is deploying the instances (ec2deploy.yml)
 3rd part is my custom deployment of WordPress site. It can be edited however you want. 
 It is made for instances inside the subnet, so the first part inside install/tasks/main.yml is for configuring networking. 
 Add the commands and packages you want to install and run it like any other ansible-playbook
+
+4th part is configuring the proxy
+I am using haproxy to route traffic to internal workers
+Just edit the proxy/files/proxy.cnf and add the IPs of your workers
 
 ### WORK IN PROGRESS ###
