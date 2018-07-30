@@ -44,10 +44,10 @@ frontend proxy
 backend admin-backend
     mode http
     option forwardfor
-    server web01 10.1.1.120:80 check
+    server web01 [WORKERIP]:80 check
 
 backend nodes
     mode http
     balance roundrobin
     option forwardfor
-    server web01 10.1.1.120:80 check
+    server web01 [WORKERIP]:80 check
