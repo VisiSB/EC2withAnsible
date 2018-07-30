@@ -1,0 +1,8 @@
+- name: "installing packages"
+  apt: pkg=haproxy state=present
+
+- name: "Copying conf"
+  copy: src=../files/proxy.cnf dest=/etc/haproxy/haproxy.cfg owner=root group=root mode=0644
+
+- name: "Restart haproxy"
+  service: name=haproxy state=restarted
