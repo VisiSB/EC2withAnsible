@@ -1,12 +1,13 @@
 - hosts: localhost
   vars:
-    aws_key: Test1
-    aws_image: ami-5b9e9fb0
-    aws_region: eu-central-1
-    aws_sub: subnet-9c4b33e1
-    aws_instance: t2.micro
-    aws_count: 1
-    aws_group: Cluster
+    aws_ip: [ Public IP : yes/no ]
+    aws_key: [ SSH_Key to use ]
+    aws_image: [ImageAMI]
+    aws_region: [Region]
+    aws_sub: [Subnet]
+    aws_instance: [Instance_type]
+    aws_count: [Number of servers to deploy]
+    aws_group: [Sec group to use]
   connection: local
   roles:
   - ec2

@@ -1,4 +1,4 @@
-- hosts: #Your hosts
+- hosts: all
   tasks:
   - name: make direcotry
     file:

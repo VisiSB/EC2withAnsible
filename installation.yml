@@ -1,4 +1,4 @@
-- hosts: [HOSTS]
+- hosts: private
   become: true
   roles:
   - install
