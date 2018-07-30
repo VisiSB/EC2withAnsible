@@ -1,0 +1,61 @@
+- name: "Configuring networking"
+  template: src=../files/50-cloud-init.cfg dest=/etc/network/interfaces.d/50-cloud-init.cfg owner=root group=root mode=0644
+
+- name: "Add keys"
+  copy: src=../files/id_rsa dest=/home/[USER]/.ssh/id_rsa owner=master group=master mode=0600
+
+- name: "Restart Networking"
+  service: name=networking state=restarted
+
+- name: "Installing packages"
+  apt: pkg={{ item }} state=present
+  with_items:
+  - nfs-client
+  - nfs-common
+  - mysql-client
+  - apache2
+  - libapache2-mod-fcgid
+  - php7.0
+  - pure-ftpd
+  - php7.0-cgi
+  - php7.0-cli
+  - php7.0-fpm
+  - php7.0-mysql
+  - php7.0-curl
+  - php7.0-gd
+  - php7.0-mbstring
+  - php7.0-mcrypt
+  - php7.0-xmlrpc
+
+- name: "Adding doc root"
+  shell: mkdir -p /var/www/[DOMAIN]
+
+- name: "Mounting to EFS"
+  shell: mount -o hard,nolock 10.1.1.62:/ /var/www/[DOMAIN]
+
+- name: "Removing default site"
+  shell: rm -f /etc/apache2/sites-enabled/*
+
+- name: "Firewall rules"
+  ufw: rule={{ item.rule }} port={{ item.port }}
+  with_items:
+  - { rule: 'allow', port: '80' }
+  - { rule: 'allow', port: '443' }
+  - { rule: 'allow', port: '22' }
+
+- name: "Enabling UFW"
+  ufw: state=enabled
+
+- name: "Enable Apache modules"
+  apache2_module: state=present name={{ item }}
+  with_items:
+  - ssl
+  - rewrite
+  - proxy_fcgi
+  - fcgid
+
+- name: "Adding virtualhost"
+  copy: src=../files/site.conf dest=/etc/apache2/sites-enabled/site.conf owner=root group=root mode=0644
+
+- name: "Restarting Apache"
+  service: name=apache2 state=restarted

@@ -1,0 +1,11 @@
+- name: "Deploy"
+  ec2:
+     assign_public_ip: no
+     key_name: "{{ aws_key }}"
+     image: "{{ aws_image }}"
+     region: "{{ aws_region }}"
+     vpc_subnet_id: "{{ aws_sub }}"
+     instance_type: "{{ aws_instance }}"
+     wait: yes
+     count: "{{ aws_count }}"
+     group: "{{ aws_group }}"

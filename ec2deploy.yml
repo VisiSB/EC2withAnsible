@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars:
+    aws_key: Test1
+    aws_image: ami-5b9e9fb0
+    aws_region: eu-central-1
+    aws_sub: subnet-9c4b33e1
+    aws_instance: t2.micro
+    aws_count: 1
+    aws_group: Cluster
+  connection: local
+  roles:
+  - ec2
+  
