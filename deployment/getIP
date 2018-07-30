@@ -1,1 +1,0 @@
-aws ec2 describe-instances --region eu-central-1 | jq '.Reservations' | grep PrivateIpAddress | sort |uniq | awk -F ':' '{print $2}' | awk -F '"' '{print $2}' | sort | uniq

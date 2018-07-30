@@ -1,4 +1,0 @@
-- hosts: [HOSTS]
-  become: true
-  roles:
-  - install
